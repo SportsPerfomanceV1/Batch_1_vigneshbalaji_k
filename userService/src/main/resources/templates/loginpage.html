@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:xmlns="@{https://www.thymeleaf.org}"
+  xmlns:th="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css}"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css}"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" th:href="@{/css/loginpage.css}" />
+  </head>
+  <body class="m-0 p-0">
+    <div
+      class="container-fluid d-flex imgg justify-content-center algin-item-center"
+      id="register-form"
+    >
+      <img
+        id="loginimage"
+        style="z-index: -1"
+        alt="image not sut=itable z-0 for your device"
+        class="image-fluid"
+        th:src="@{/image/istockphoto-1364255407-2048x2048.jpg}"
+      />
+
+      <div class="row w-75 justify-content-center align-items-center">
+        <div class="col-6" style="z-index: 1">
+          <h5 class="text-white text-center me-5">
+            hi i am try to build super web page ggggggggggg ggggggggggg
+            ffffffffffffffff ffffffffffff ffffffffffffff d ddddddddddddddd
+          </h5>
+        </div>
+
+        <div class="col-6 mt-5">
+          <div
+            class="card w-75 ms-5 opacity-75 mt-5 border border-2 border-seconday"
+          >
+            <div th:if="${param.error}">
+              <div class="card-header">
+                <h6 class="text-danger mb-1 text-center">
+                  invalid user credentials
+                </h6>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="text-center">login..</h6>
+              <div class="col">
+                <form th:action="@{http://localhost:8080/login}" method="post">
+                  <div class="form-floating mt-2">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="username"
+                      placeholder="email"
+                      value=""
+                    />
+                    <label for="email">email</label>
+                  </div>
+                  <div class="form-floating mt-2">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      placeholder="password"
+                      value=""
+                    />
+                    <label for="password">password</label>
+                  </div>
+                  <button
+                    class="btn btn-dark text-white w-40 mt-2 ms-2"
+                    type="submit"
+                  >
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Submit
+                  </button>
+                  <a
+                    th:href="@{http://localhost:8080/user/signup}"
+                    class="btn btn-success text-white w-40 mt-2 ms-4"
+                  >
+                    <i class="fa-solid text-white fa-user-plus"></i> sign up
+                  </a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js}"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

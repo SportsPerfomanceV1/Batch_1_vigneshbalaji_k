@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ <link
+      th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css}"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css}"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+     <!-- <link th:rel="stylesheet" th:href="@{/homepage.css}" /> -->
+    <link th:rel="stylesheet" th:href="@{/css/homepage.css}" />
+</head>
+<body>
+
+        <div class="container-md  mt-5" style="margin:auto;">
+            <h4 class="text-center text-success"><i>Profile Edition</i> </h4>
+              <div class="card p-0 border border-0">
+                <div class="card-body">
+                  <!-- athlete registration form start here -->
+                  <form action="/coach/updation/profile" method="post" enctype="multipart/form-data" class="f">
+                    <!-- row 1 contain  firstname and lastname start  -->
+                    <input type="text" name="userId" th:value="${session.user.email}" class="invisible">
+                    <div class="row g-3">
+                      <div class="col-6">
+                      
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-user"></i
+                          ></span>
+                          <input
+                            class="form-control m-0"
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            placeholder="Firstname"
+                            th:value="${session.user.firstName}"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-regular fa-circle-user"></i
+                          ></span>
+                          <input
+                            class="form-control m-0"
+                            type="text"
+                            name="lastName"
+                            placeholder="Lastname"
+                            id="lastname"
+                            th:value="${session.user.lastName}"
+                          />
+                        </div>
+                      </div>
+                      <!-- row 1 end  -->
+                      <!-- row 2 contain birthdate and genter start here -->
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-cake-candles"></i
+                          ></span>
+                          <input
+                            class="form-control m-0"
+                            type="text"
+                            name="dob"
+                            placeholder="Dob"
+                            id="birthdate"
+                            th:value="${session.user.dob}"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-person"></i
+                          ></span>
+                          <input
+                            class="form-control m-0"
+                            type="text"
+                            name="gender"
+                            placeholder="Gender"
+                            id="gender"
+                            th:value="${session.user.gender}"
+                          />
+                        </div>
+                      </div>
+                      <!-- row 2 end here -->
+                      <!--  row 3 contain coachId category start here -->
+                     <div ></div>
+                      <div class="col-6" th:if="${session.user.role == 'coach'}" >
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-chalkboard-user"></i
+                          ></span>
+
+                          <input
+                            class="form-control m-0"
+                            type="text"
+                            name="coachId"
+                            placeholder="CoachId"
+                            id="coachId"
+                            th:value = "${coach.coachId}"
+                          />
+                        </div>
+                      </div>
+                     <div class="col-6" th:if="${session.user.role == 'admin'}">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-chalkboard-user"></i
+                          ></span>
+
+                          <input
+                            class="form-control m-0"
+                            type="text"
+                            name="coachId"
+                            placeholder="Admin Id"
+                            id="coachId"
+                            th:value = "${coach.coachId}"
+                          />
+                        </div>
+                      </div>
+                      <!--  row 3 end -->
+                      <!-- row 4 contain height and weight start here -->
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-ruler-vertical"></i
+                          ></span>
+
+                          <input
+                            class="form-control m-0"
+                            type="number"
+                            name="height"
+                            placeholder="Height"
+                            id="height"
+                            th:value = "${coach.height}"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-weight-scale"></i
+                          ></span>
+
+                          <input
+                            class="form-control m-0"
+                            type="number"
+                            name="weight"
+                            placeholder="Weight"
+                            id="weight"
+                            th:value = "${coach.weight}"
+                          />
+                        </div>
+                      </div>
+                      <!-- row 4 end here-->
+                      <!-- row 5 contain profile of user and register button start here  -->
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text text-primary"
+                            ><i class="fa-solid fa-photo-film"></i
+                          ></span>
+
+                          <input
+                            class="form-control m-0"
+                            type="file"
+                            name="profile"
+                            placeholder="Profile"
+                            id="profile"
+                            
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6 mt-3">
+                        <button type="submit" class="btn btn-primary w-100">
+                          <i class="fa-solid fa-address-card me-2"></i>register
+                        </button>
+                      </div>
+                    </div>
+                    <!-- row 5 contain profile of user and register button start here  -->
+                  </form>
+                  <!-- athlete registraion form end here -->
+                </div>
+              </div>
+              </div>
+</body>
+</html>
