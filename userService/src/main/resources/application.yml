@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: userService
+  datasource:
+    url: jdbc:mysql://localhost:3306/users_service
+    username: root
+    password: 2799
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/static/
+  main:
+    allow-circular-references: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+        
+server:
+  port: 8080
+
+      

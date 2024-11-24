@@ -1,0 +1,66 @@
+body{
+	height:100vh;
+}
+.nav-item {
+  margin-left: 20px;
+}
+#logout {
+  font-size: 13px;
+  padding: 5px;
+}
+.btn:hover {
+  color: green;
+}
+input {
+  padding: 0px;
+  margin-top: 7px;
+}
+select {
+  margin-top: 7px;
+}
+#register-form {
+  height: 75vh;
+}
+.actives{
+	color:green;
+}
+.imghome{
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	background-repeat: no-repeat;
+	background-position:center;
+	background-size: cover;
+}
+.imghome:before{
+	content:"";
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-image: linear-gradient(to bottom right ,black ,black);
+}
+
+#dashboard{
+	padding:10px;
+	height:250px;
+	
+}
+#rank{
+	position: relative;
+	left: 50%;
+	right: 50%;
+		
+}
+#eventCreationPageImg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    width:100vw;
+    
+	background-repeat: no-repeat;
+	background-size: contain;
+}
