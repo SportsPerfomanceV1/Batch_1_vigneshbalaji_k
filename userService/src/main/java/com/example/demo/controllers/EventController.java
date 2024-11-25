@@ -26,89 +26,89 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
 @RequiredArgsConstructor
 public class EventController {
-	
+
 	private final EventService eventService;
-	
+
 	@GetMapping("/event/getCreationpage")
 	public ModelAndView getCreationpage() {
-		return  new ModelAndView("eventcreation");
+		return new ModelAndView("eventcreation");
 	}
-	
+
 	@GetMapping("/event/registered_event")
-    public ModelAndView getregisteredEvent () {
-    	return new ModelAndView("registeredEvent");
-    }
-	@PostMapping(" ")
+	public ModelAndView getregisteredEvent() {
+		return new ModelAndView("registeredEvent");
+	}
+
+	@PostMapping("/event/creation")
 	public ModelAndView eventCreation(
 			@RequestParam("image") MultipartFile image,
 			@RequestParam("eventTitle") String eventTitle,
 			@RequestParam("meetName") String meetName,
 			@RequestParam("category") String category,
 			@RequestParam("eventDate") String eventDate,
-			@RequestParam("location") String location	
-	) throws IOException{
-	 
-	 	EventData eventData = EventData.builder()
-		        .eventTitle(eventTitle)
-	        	.category(category)
-	     	    .location(location)
-		        .meetName(meetName)
-		        .eventDate(eventDate)
-		        .permission(Permission.NOT_APPROVE)
-		        .build();
-//		System.out.println("this is event that come to store that event in db :" + eventData);
-		eventService.eventCreation(eventData , image);
-//		return  new RedirectView("http://localhost:8080/home");
-		return  new ModelAndView("redirect:/home");
+			@RequestParam("location") String location) throws IOException {
+
+		EventData eventData = EventData.builder()
+				.eventTitle(eventTitle)
+				.category(category)
+				.location(location)
+				.meetName(meetName)
+				.eventDate(eventDate)
+				.permission(Permission.NOT_APPROVE)
+				.build();
+		// System.out.println("this is event that come to store that event in db :" +
+		// eventData);
+		eventService.eventCreation(eventData, image);
+		// return new RedirectView("http://localhost:8080/home");
+		return new ModelAndView("redirect:/home");
 	}
-	
+
 	@GetMapping("/event/getall")
-	public List<EventData> getAllEventWithoutModel() throws io.jsonwebtoken.io.IOException, IOException{
-		return  eventService.getAllEvent();
+	public List<EventData> getAllEventWithoutModel() throws io.jsonwebtoken.io.IOException, IOException {
+		return eventService.getAllEvent();
 	}
-	
+
 	@GetMapping("/event/getAllEvent")
 	public ModelAndView getAllEventWithModel(Model model) throws io.jsonwebtoken.io.IOException, IOException {
 		List<EventData> events = eventService.getAllEvent();
-	    model.addAttribute("events", events);
+		model.addAttribute("events", events);
 		return new ModelAndView("waitingforapprove");
 	}
+
 	@GetMapping("/event/event/findbyevent/{id}")
-	public EventData findByeventId (@PathVariable("id") int id) throws io.jsonwebtoken.io.IOException, IOException {
-//		System.out.println("this is given event id :" + id);
-		 return eventService.getEventById(id);
+	public EventData findByeventId(@PathVariable("id") int id) throws io.jsonwebtoken.io.IOException, IOException {
+		// System.out.println("this is given event id :" + id);
+		return eventService.getEventById(id);
 	}
-	
+
 	@GetMapping("/event/findbyeventname/{eventname}")
-	public EventData findByeventName (@PathVariable("eventname") String eventName) throws io.jsonwebtoken.io.IOException, IOException {
-//		System.out.println("this is given event name :" + eventName);
-	          return eventService.getEventByEventName(eventName);	
+	public EventData findByeventName(@PathVariable("eventname") String eventName)
+			throws io.jsonwebtoken.io.IOException, IOException {
+		// System.out.println("this is given event name :" + eventName);
+		return eventService.getEventByEventName(eventName);
 	}
-	
+
 	@GetMapping("/event/permission/{eventId}")
 	public String setPermission(@PathVariable("eventId") int eventId) {
 		System.out.println("the given event id is " + eventId);
-		 eventService.changePermission(eventId);
-		 return "i done my work";
+		eventService.changePermission(eventId);
+		return "i done my work";
 	}
-	
+
 	@GetMapping("/event/disapprove/{eventId}")
 	public String disapprove(@PathVariable int eventId) {
-//		int eventID = Integer.parseInt(eventId);
+		// int eventID = Integer.parseInt(eventId);
 		System.out.println("incoming event id is :" + eventId);
-		 eventService.disapprove(eventId);
-		 return "i done my work";
+		eventService.disapprove(eventId);
+		return "i done my work";
 	}
-	
+
 	@GetMapping("/event/getregevent")
 	public ModelAndView getRegEvent() {
-		return  new ModelAndView("redirect:/athlete/regevent");
+		return new ModelAndView("redirect:/athlete/regevent");
 	}
-	
-
 
 }
